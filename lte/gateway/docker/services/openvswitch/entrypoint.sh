@@ -129,12 +129,9 @@ case $1 in
       load-datapath-modules
     ;;
     "load-modules-and-start-ovs")
-      if load-datapath-modules; then
-          sleep 5
-          start_ovs
-      fi
-      echo "FATAL: Datapath modules check failed"
-      exit 1
+      load-datapath-modules &
+      sleep 5
+      start_ovs
     ;;
     *) echo "Invalid option $0 [start-ovs-only|load-modules-only|load-modules-and-start-ovs]"
 esac
